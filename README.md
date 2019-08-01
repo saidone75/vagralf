@@ -10,3 +10,5 @@ Steps:
 - $ git clone https://github.com/saidone75/vagralf.git
 - $ cd vagralf
 - $ vagrant up
+
+Username/password: admin/admin
