@@ -12,6 +12,6 @@ Steps:
 - $ cd vagralf
 - $ vagrant up
 
-![](vagralt.gif)
+![](vagralf.gif)
 
 Username/password: admin/admin
