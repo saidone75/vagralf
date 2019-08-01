@@ -42,11 +42,11 @@ function fatal() {
 
 # update list of available packages
 info "updating list of available packages"
-sudo apt update &> $LOGFILE
+apt update &> $LOGFILE
 
 # install required packages
 info "installing required packages"
-sudo apt install openjdk-8-jre-headless tomcat7 postgresql unzip imagemagick --assume-yes &>> $LOGFILE
+apt install openjdk-8-jre-headless tomcat7 postgresql unzip imagemagick --assume-yes &>> $LOGFILE
 
 cd /vagrant
 # download and unzip Alfresco community distribution
@@ -59,23 +59,23 @@ export ALFRESCO=alfresco-content-services-community-distribution-6.1.2-ga
 
 info "configuring Tomcat and Alfresco"
 # Tomcat config
-sudo cp $ALFRESCO/web-server/conf/Catalina/localhost/* /etc/tomcat7/Catalina/localhost
+cp $ALFRESCO/web-server/conf/Catalina/localhost/* /etc/tomcat7/Catalina/localhost
 
 # PostgreSQL JDBC driver
-sudo cp $ALFRESCO/web-server/lib/* /usr/share/tomcat7/lib
+cp $ALFRESCO/web-server/lib/* /usr/share/tomcat7/lib
 
 # Alfresco and Share WARs
-sudo cp $ALFRESCO/web-server/webapps/*.war /var/lib/tomcat7/webapps/
-sudo rm -r /var/lib/tomcat7/webapps/ROOT
+cp $ALFRESCO/web-server/webapps/*.war /var/lib/tomcat7/webapps/
+rm -r /var/lib/tomcat7/webapps/ROOT
 
 # Alfresco config       
-sudo cp -r $ALFRESCO/web-server/shared /usr/share/tomcat7/shared
+cp -r $ALFRESCO/web-server/shared /usr/share/tomcat7/shared
 cp alfresco-global.properties /usr/share/tomcat7/shared/classes/
 
 # create alf_data and setting ownership
-sudo mkdir -p /srv/alfresco
-sudo cp -R $ALFRESCO/alf_data /srv/alfresco
-sudo chown -R tomcat7:tomcat7 /srv/alfresco
+mkdir -p /srv/alfresco
+cp -R $ALFRESCO/alf_data /srv/alfresco
+chown -R tomcat7:tomcat7 /srv/alfresco
 
 # create Alfresco database and user
 info "creating Alfresco database and user"
@@ -84,11 +84,11 @@ sudo -u postgres bash -c "psql -c \"CREATE USER alfresco WITH PASSWORD 'alfresco
 sudo -u postgres bash -c "psql -c \"GRANT ALL PRIVILEGES ON DATABASE alfresco TO alfresco;\"" &>> $LOGFILE
 
 # increase Tomcat memory limit...
-sed '/^#!\/bin\/sh/a JAVA_OPTS="-Xmx2048m"' /usr/share/tomcat7/bin/catalina.sh | sudo tee /usr/share/tomcat7/bin/catalina.sh &>> $LOGFILE
+sed '/^#!\/bin\/sh/a JAVA_OPTS="-Xmx2048m"' /usr/share/tomcat7/bin/catalina.sh | tee /usr/share/tomcat7/bin/catalina.sh &>> $LOGFILE
 
 # ...and restart Tomcat!
 info "restarting Tomcat"
-sudo service tomcat7 restart
+service tomcat7 restart
 
 # wait for Alfresco deployment
 info "waiting for Alfresco deployment"
