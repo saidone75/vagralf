@@ -12,6 +12,6 @@ Steps:
 - $ cd vagralf
 - $ vagrant up
 
-![](vagralf.gif)
+[![asciicast](https://asciinema.org/a/260388.png)](https://asciinema.org/a/260388)
 
 Username/password: admin/admin
