@@ -14,7 +14,7 @@ Steps:
 
 [![asciicast](https://asciinema.org/a/260388.png)](https://asciinema.org/a/260388)
 
-Listening on a bridged NIC with address 192.168.33.10
+Listening on a private NIC with address 192.168.33.10
 
 Alfresco Share URL: http://192.168.33.10:8080/share
 
