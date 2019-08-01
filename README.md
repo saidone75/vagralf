@@ -7,6 +7,6 @@ Tested with:
 - Virtualbox 6.0
 
 Steps:
-$ git clone https://github.com/saidone75/vagralf.git
-$ cd vagralf
-$ vagrant up
+- $ git clone https://github.com/saidone75/vagralf.git
+- $ cd vagralf
+- $ vagrant up
