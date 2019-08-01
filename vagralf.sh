@@ -10,11 +10,10 @@ LOGFILE=/vagrant/vagralf.log
 function info() {
 	for LINE in $1; do
 		if [ $COLOUR -eq 0 ]; then
-			echo -ne "[INFO]"
+			echo -e "[INFO] $LINE"
 		else
-			echo -ne "\t\033[0;32m[INFO]\033[0;370m"
+			echo -e "\t\033[0;32m[INFO]\033[0;370m $LINE"
 		fi
-		echo -e "  $LINE"
 	done
 }
 
@@ -22,11 +21,10 @@ function debug() {
 	for LINE in $1; do
 		if [ $DEBUG -eq 1 ]; then
 			if [ $COLOUR -eq 0 ]; then
-				echo -ne "[DEBUG]"
+				echo -e "[DEBUG] $LINE"
 			else
-				echo -ne "\t\033[0;33m[DEBUG]\033[0;370m"
+				echo -ne "\t\033[0;33m[DEBUG]\033[0;370m $LINE"
 			fi
-			echo -e " $LINE"
 		fi
 	done
 }
@@ -34,11 +32,10 @@ function debug() {
 function fatal() {
 	for LINE in $1; do
 		if [ $COLOUR -eq 0 ]; then
-			echo -ne "[FATAL]"
+			echo -e "[FATAL] $LINE"
 		else
-			echo -ne "\t\033[0;31m[FATAL]\033[0;370m"
+			echo -e "\t\033[0;31m[FATAL]\033[0;370m $LINE"
 		fi
-		echo -e " $LINE"
 		exit 1
 	done
 }
