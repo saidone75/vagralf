@@ -59,7 +59,7 @@ export ALFRESCO=alfresco-content-services-community-distribution-6.1.2-ga
 
 info "configuring Tomcat and Alfresco"
 # stop Tomcat
-service tomcat7 stop
+service tomcat7 stop &
 
 # Tomcat config
 cp $ALFRESCO/web-server/conf/Catalina/localhost/* /etc/tomcat7/Catalina/localhost
@@ -88,7 +88,7 @@ sudo -u postgres bash -c "psql -c \"CREATE USER alfresco WITH PASSWORD 'alfresco
 sudo -u postgres bash -c "psql -c \"GRANT ALL PRIVILEGES ON DATABASE alfresco TO alfresco;\"" &>> $LOGFILE
 
 # increase Tomcat memory limit...
-sed '/^#!\/bin\/sh/a JAVA_OPTS="-Xmx2048m"' /usr/share/tomcat7/bin/catalina.sh | tee /usr/share/tomcat7/bin/catalina.sh &>> $LOGFILE
+sed '/^#!\/bin\/sh/a JAVA_OPTS="-Xmx2048m"' /usr/share/tomcat7/bin/catalina.sh | sudo tee /usr/share/tomcat7/bin/catalina.sh &>> $LOGFILE
 
 # ...and restart Tomcat!
 info "starting Tomcat"
