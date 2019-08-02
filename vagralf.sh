@@ -88,15 +88,16 @@ sudo -u postgres bash -c "psql -c \"CREATE USER alfresco WITH PASSWORD 'alfresco
 sudo -u postgres bash -c "psql -c \"GRANT ALL PRIVILEGES ON DATABASE alfresco TO alfresco;\"" &>> $LOGFILE
 
 # increase Tomcat memory limit...
-sed '/^#!\/bin\/sh/a JAVA_OPTS="-Xmx2048m"' /usr/share/tomcat7/bin/catalina.sh | sudo tee /usr/share/tomcat7/bin/catalina.sh &>> $LOGFILE
+sed '/^#!\/bin\/sh/a JAVA_OPTS="-Xms2048m -Xmx2048m"' /usr/share/tomcat7/bin/catalina.sh | sudo tee /usr/share/tomcat7/bin/catalina.sh &>> $LOGFILE
 
 # ...and restart Tomcat!
 info "starting Tomcat"
+cat /dev/null > /var/log/tomcat7/catalina.out
 service tomcat7 start
 
 # wait for Alfresco deployment
 info "waiting for Alfresco deployment"
-while ! sudo grep "INFO: Deployment of configuration descriptor /etc/tomcat7/Catalina/localhost/alfresco.xml has finished" /var/log/tomcat7/catalina.out; do sleep 10; done
+while ! sudo grep "INFO: Server startup in" /var/log/tomcat7/catalina.out; do sleep 10; done
 info "done!"
 
 # remove unzipped directory, leave zip archive
