@@ -58,6 +58,9 @@ unzip alfresco-content-services-community-distribution-6.1.2-ga.zip &>> $LOGFILE
 export ALFRESCO=alfresco-content-services-community-distribution-6.1.2-ga
 
 info "configuring Tomcat and Alfresco"
+# stop Tomcat
+service tomcat7 stop
+
 # Tomcat config
 cp $ALFRESCO/web-server/conf/Catalina/localhost/* /etc/tomcat7/Catalina/localhost
 
@@ -65,8 +68,9 @@ cp $ALFRESCO/web-server/conf/Catalina/localhost/* /etc/tomcat7/Catalina/localhos
 cp $ALFRESCO/web-server/lib/* /usr/share/tomcat7/lib
 
 # Alfresco and Share WARs
-cp $ALFRESCO/web-server/webapps/*.war /var/lib/tomcat7/webapps/
-rm -r /var/lib/tomcat7/webapps/ROOT
+rm -rf /var/lib/tomcat7/work/Catalina/localhost/* 
+rm -rf /var/lib/tomcat7/webapps/*
+cp $ALFRESCO/web-server/webapps/{alfresco,share}.war /var/lib/tomcat7/webapps/
 
 # Alfresco config       
 cp -r $ALFRESCO/web-server/shared /usr/share/tomcat7/shared
@@ -87,8 +91,8 @@ sudo -u postgres bash -c "psql -c \"GRANT ALL PRIVILEGES ON DATABASE alfresco TO
 sed '/^#!\/bin\/sh/a JAVA_OPTS="-Xmx2048m"' /usr/share/tomcat7/bin/catalina.sh | tee /usr/share/tomcat7/bin/catalina.sh &>> $LOGFILE
 
 # ...and restart Tomcat!
-info "restarting Tomcat"
-service tomcat7 restart
+info "starting Tomcat"
+service tomcat7 start
 
 # wait for Alfresco deployment
 info "waiting for Alfresco deployment"
