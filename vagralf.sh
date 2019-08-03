@@ -93,11 +93,15 @@ sed '/^#!\/bin\/sh/a JAVA_OPTS="-Xms2048m -Xmx2048m"' /usr/share/tomcat7/bin/cat
 # ...and restart Tomcat!
 info "starting Tomcat"
 cat /dev/null > /var/log/tomcat7/catalina.out
-service tomcat7 start
+service tomcat7 start &
+
+# install alfresco-pdf-renderer
+info "installing alfresco-pdf-renderer"
+tar -xzf $ALFRESCO/alfresco-pdf-renderer/alfresco-pdf-renderer-1.1-linux.tgz -C /usr/bin/
 
 # wait for Alfresco deployment
 info "waiting for Alfresco deployment"
-while ! sudo grep "INFO: Server startup in" /var/log/tomcat7/catalina.out; do sleep 10; done
+while ! sudo grep "INFO: Server startup in" /var/log/tomcat7/catalina.out; do sleep 5; done
 info "done!"
 
 # remove unzipped directory, leave zip archive
