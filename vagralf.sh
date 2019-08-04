@@ -67,6 +67,9 @@ cp $ALFRESCO/web-server/conf/Catalina/localhost/* /etc/tomcat7/Catalina/localhos
 # PostgreSQL JDBC driver
 cp $ALFRESCO/web-server/lib/* /usr/share/tomcat7/lib
 
+# install Share Services AMP
+java -jar $ALFRESCO/bin/alfresco-mmt.jar install $ALFRESCO/amps/* $ALFRESCO/web-server/webapps/alfresco.war
+
 # Alfresco and Share WARs
 rm -rf /var/lib/tomcat7/work/Catalina/localhost/* 
 rm -rf /var/lib/tomcat7/webapps/*
