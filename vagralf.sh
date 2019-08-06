@@ -14,9 +14,9 @@ export ALF_DIR=$(sed s/\.[^\.]*$// <<< $ALF_ZIP)
 function info() {
 	  for LINE in $1; do
 		    if [ $COLOUR -eq 0 ]; then
-			      echo -e "[I] $LINE"
+			      echo "[I] $LINE"|tee -a $LOGFILE
 		    else
-			      echo -e "\t\033[0;32m[I]\033[0;370m $LINE"
+			      echo -e "\033[0;32m[I]\033[0;370m $LINE" && echo "[I] $LINE" >> $LOGFILE
 		    fi
 	  done
 }
@@ -25,9 +25,9 @@ function debug() {
 	  for LINE in $1; do
 		    if [ $DEBUG -eq 1 ]; then
 			      if [ $COLOUR -eq 0 ]; then
-				        echo -e "[D] $LINE"
+				        echo "[D] $LINE"|tee -a $LOGFILE
 			      else
-				        echo -ne "\t\033[0;33m[D]\033[0;370m $LINE"
+				        echo -e "\033[0;33m[D]\033[0;370m $LINE" && echo "[D] $LINE" >> $LOGFILE
 			      fi
 		    fi
 	  done
@@ -36,9 +36,9 @@ function debug() {
 function fatal() {
 	  for LINE in $1; do
 		    if [ $COLOUR -eq 0 ]; then
-			      echo -e "[F] $LINE"
+			      echo "[F] $LINE"|tee -a $LOFGILE
 		    else
-			      echo -e "\t\033[0;31m[F]\033[0;370m $LINE"
+			      echo -e "\033[0;31m[F]\033[0;370m $LINE" && echo "[F] $LINE" >> $LOGFILE
 		    fi
 		    exit 1
 	  done
