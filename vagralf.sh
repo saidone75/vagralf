@@ -8,8 +8,8 @@ IFS=$'\n'
 DEBUG=1
 COLOUR=1
 
-export ALF_ZIP=$(sed s/^.*[\/]// <<< $ALF_DOWNLOAD_URL)
-export ALF_DIR=$(sed s/\.[^\.]*$// <<< $ALF_ZIP)
+ALF_ZIP=$(sed s/^.*[\/]// <<< $ALF_DOWNLOAD_URL)
+ALF_DIR=$(sed s/\.[^\.]*$// <<< $ALF_ZIP)
 
 function info() {
 	  for LINE in $1; do
