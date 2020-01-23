@@ -12,7 +12,7 @@ Steps:
 - $ cd vagralf
 - $ vagrant up
 
-[![asciicast](https://asciinema.org/a/261149.png)](https://asciinema.org/a/261149)
+[![asciicast](https://asciinema.org/a/295525.svg)](https://asciinema.org/a/295525)
 
 Listening on a private NIC with address 192.168.33.10
 
