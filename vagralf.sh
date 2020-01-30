@@ -50,7 +50,7 @@ apt update &> $LOGFILE
 
 # install required packages
 info "installing required packages"
-apt install openjdk-11-jre-headless tomcat8 postgresql unzip imagemagick --assume-yes &>> $LOGFILE
+apt install mg tomcat8 postgresql unzip imagemagick --assume-yes &>> $LOGFILE
 
 cd /vagrant
 # download and unzip Alfresco community distribution
