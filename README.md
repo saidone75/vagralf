@@ -2,8 +2,8 @@
 Vagrant shell provisioner for Alfresco Content Services
 
 Tested with:
-- Vagrant 2.2.5
-- Virtualbox 6.0
+- Vagrant 2.0, 2.2
+- Virtualbox 5.2, 6.0
 
 but should work with any reasonably recent mix of the two
 
