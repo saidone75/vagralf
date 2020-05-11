@@ -19,3 +19,8 @@ Listening on a private NIC with address 192.168.33.10
 Alfresco Share URL: http://192.168.33.10:8080/share
 
 Username/password: admin/admin
+
+## License
+Copyright (c) 2020 Saidone
+
+Distributed under the MIT License
