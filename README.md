@@ -8,9 +8,11 @@ Tested with:
 but should work with any reasonably recent mix of the two
 
 Steps:
-- $ git clone https://github.com/saidone75/vagralf.git
-- $ cd vagralf
-- $ vagrant up
+```console
+$ git clone https://github.com/saidone75/vagralf.git
+$ cd vagralf
+$ vagrant up
+```
 
 [![asciicast](https://asciinema.org/a/295525.svg)](https://asciinema.org/a/295525)
 
