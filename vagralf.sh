@@ -50,7 +50,11 @@ apt update &> $LOGFILE
 
 # install required packages
 info "installing required packages"
-apt install mg tomcat9 postgresql zip unzip imagemagick --assume-yes &>> $LOGFILE
+apt install mg tomcat9 postgresql activemq zip unzip imagemagick --assume-yes &>> $LOGFILE
+
+# enable activemq
+ln -s /etc/activemq/instances-available/main /etc/activemq/instances-enabled/main
+service activemq restart &
 
 cd /vagrant
 # download and unzip Alfresco community distribution
