@@ -81,12 +81,12 @@ java -jar $ALF_DIR/bin/alfresco-mmt.jar install $ALF_DIR/amps/* $ALF_DIR/web-ser
 rm -rf /var/lib/tomcat9/work/Catalina/*
 rm -rf /var/lib/tomcat9/webapps/*
 
-cp -R WEB-INF-alfresco WEB-INF
-zip -ur $ALF_DIR/web-server/webapps/alfresco.war WEB-INF/classes/log4j.properties
-rm -rf WEB-INF
+mkdir -p WEB-INF/classes
+cp alfresco-log4j.properties WEB-INF/classes/log4j.properties
+zip -qur $ALF_DIR/web-server/webapps/alfresco.war WEB-INF/classes/log4j.properties
 
-cp -R WEB-INF-share WEB-INF
-zip -ur $ALF_DIR/web-server/webapps/share.war WEB-INF/classes/log4j.properties
+cp share-log4j.properties WEB-INF/classes/log4j.properties
+zip -qur $ALF_DIR/web-server/webapps/share.war WEB-INF/classes/log4j.properties
 rm -rf WEB-INF
 
 cp $ALF_DIR/web-server/webapps/{alfresco,share}.war /var/lib/tomcat9/webapps/
@@ -112,7 +112,8 @@ sed '/^#!\/bin\/sh/a JAVA_OPTS="-Xms2048m -Xmx2048m -Dencryption.keystore.type=J
 
 # ...and restart Tomcat!
 info "starting Tomcat"
-cat /dev/null > /var/log/tomcat9/catalina.out
+cat /dev/null > /var/log/tomcat9/alfresco.log
+chown tomcat:adm /var/log/tomcat9/alfresco.log
 service tomcat9 start &
 
 # install alfresco-pdf-renderer
