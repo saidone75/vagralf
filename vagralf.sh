@@ -95,8 +95,7 @@ cp $ALF_DIR/web-server/webapps/{alfresco,share}.war /var/lib/tomcat9/webapps/
 cp -r $ALF_DIR/web-server/shared /var/lib/tomcat9
 cp alfresco-global.properties /var/lib/tomcat9/shared/classes/
 
-# create alf_data and setting ownership
-#cp -R alf_data /srv/alfresco
+# create alf_data, keystore directory tree and setting ownership
 mkdir -p /srv/alfresco/alf_data/keystore/metadata-keystore
 cp keystore /srv/alfresco/alf_data/keystore/metadata-keystore
 chown -R tomcat:tomcat /srv/alfresco
@@ -115,9 +114,6 @@ info "starting Tomcat"
 cat /dev/null > /var/log/tomcat9/alfresco.log
 chown tomcat:adm /var/log/tomcat9/alfresco.log
 service tomcat9 start &
-
-# install alfresco-pdf-renderer
-#tar -xzf $ALF_DIR/alfresco-pdf-renderer/alfresco-pdf-renderer-1.1-linux.tgz -C /usr/bin/
 
 # wait for Alfresco deployment
 info "waiting for Alfresco deployment"
