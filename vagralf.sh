@@ -1,6 +1,7 @@
 #!/bin/bash
 
-ALF_DOWNLOAD_URL=https://download.alfresco.com/cloudfront/release/community/7.0.0-build-2355/alfresco-content-services-community-distribution-7.0.0.zip
+ALF_DOWNLOAD_URL=https://download.alfresco.com/cloudfront/release/community/7.1.0.1-build-2669/alfresco-content-services-community-distribution-7.1.0.1.zip
+
 LOGFILE=/vagrant/vagralf.log
 
 IFS=$'\n'
