@@ -23,6 +23,6 @@ Alfresco Share URL: http://192.168.33.10:8080/share
 Username/password: admin/admin
 
 ## License
-Copyright (c) 2020-2021 Saidone
+Copyright (c) 2020-2022 Saidone
 
 Distributed under the MIT License
